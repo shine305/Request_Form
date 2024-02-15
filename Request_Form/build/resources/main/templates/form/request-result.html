@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Form</title>
+</head>
+<body>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400;500;700&display=swap");
+        * {
+          margin-bottom: 17px;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: "M PLUS Rounded 1c", sans-serif;
+        }
+        .label {
+            float: left;
+            margin-right: 20px;
+            width: 75px;
+            border-left: solid 3px #c2704f;
+            padding-left: 1px;
+
+          }
+    </style>
+    <h1>Request Form</h1>
+    <p>
+        以外のご予約席が送信されました。
+    </p>
+
+    <table th:object="${request}">
+        <tr>
+            <th class="label">名前：</th>
+            <td th:text="*{name}"></td>
+        </tr>
+        <tr>
+            <th class="label">メール：</th>
+            <td th:text="*{email}"></td>
+        </tr>
+        <tr>
+            <th class="label">予約席：</th>
+            <td th:text="${radioSeat.get(request.seat)}"></td>
+        </tr>
+        <tr>
+            <th class="label">ご質問：</th>
+            <td th:text="*{body}"></td>
+    </table>
+    <footer>
+        <a href="/">TOP</a> | 
+        <a href="./">Contact</a> | 
+        <a href="./request">Request Form</a>
+    </footer>
+</body>
+</html>

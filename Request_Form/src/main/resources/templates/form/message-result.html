@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Message Form</title>
+</head>
+
+<body>
+    <h1>Message Form</h1>
+    <p>
+        以下のメッセージが送信されました。
+    </p>
+
+    <table th:object="${message}">
+        <tr>
+            <th>名前：</th>
+            <td th:text="*{name}"></td>
+        </tr>
+        <tr>
+            <th>性別：</th>
+            <td th:text="${radioGender.get(message.gender)}"></td>
+        </tr>
+        <tr>
+            <th>年齢：</th>
+            <td th:text="*{age}"></td>
+        </tr>
+        <tr>
+            <th>住所：</th>
+            <td th:text="${selectAddress.get(message.address)}"></td>
+        </tr>
+        <tr>
+            <th>内容：</th>
+            <td th:text="*{body}"></td>
+        </tr>
+    </table>
+
+    <footer>
+        <a href="/">TOP</a> | 
+        <a href="./">Contact</a> | 
+        <a href="./message">Message Form</a>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Request Form</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <style>
+  @import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400;500;700&display=swap");
+* {
+  margin-bottom: 17px;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: grid;
+  place-content: center;
+}
+
+.contact-form {
+  border: 1px solid #aaa;
+  padding: 50px 30px;
+}
+
+.title {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+form {
+  width: 460px;
+  margin: 0 auto;
+}
+
+.item {
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.label {
+  float: left;
+  margin-right: 20px;
+  width: 75px;
+  border-left: solid 3px #c2704f;
+  padding-left: 1px;
+}
+
+.inputs {
+  float: left;
+  width: 300px;
+}
+
+input[type="text"],
+input[type="email"] {
+  border: solid 1px #aaa;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 5px;
+}
+
+textarea {
+  border: solid 1px #aaa;
+  border-radius: 5px;
+  padding: 10px;
+  height: 160px;
+  width: 300px;
+  font-size: 15px;
+}
+
+.button-area {
+  text-align: center;
+}
+
+input[type="submit"] {
+  background: #c2704f;
+  border: none;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  padding: 10px 20px;
+  margin: 0 5px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px black;
+  cursor: pointer;
+}
+
+input[type="reset"] {
+  background: #837a7a;
+  border: none;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  padding: 10px 20px;
+  margin: 0 5px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px black;
+
+  cursor: pointer;
+}
+h1
+{
+  padding-left: 120px;
+}
+</style>
+
+  
+    <form action="#" th:action="@{./request}" th:object="${request}" method="POST">
+      <h1 >Request Form</h1>
+      
+      <div class="contact-form">
+    
+     <p class="title">ご予約はこちら</p>
+     <table>
+        <tr>
+            <th class="label">名前：</th>
+            <td><input type="text"  th:field="*{name}"></td>
+        </tr>
+        <tr>
+          <th class="label">メール：</th>
+          <td><input type="email"  th:field="*{email}"></td>
+          <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">E-mail Error</td>
+        </tr>
+        <tr>
+            <th class="label">予約席：</th>
+            <td>
+                <label  th:each="item : ${radioSeat}"><input type="radio" th:field="*{seat}" th:text="${item.value}" th:value="${item.key}"></label></td>
+        </tr>
+        <tr>
+            <th class="label">ご質問：</th>
+            <td>
+                <textarea rows="10" th:field="*{body}" placeholder="ご質問はこちら"></textarea>
+            </td>
+            <td th:if="${#fields.hasErrors('body')}" th:errors="*{body}">Body Error</td>
+        </tr>
+      
+            <td colspan="2">
+                <input type="submit" value="予約決定">
+            </td>
+        </tr>
+     </table>
+    </form> 
+  </div>
+    <footer>
+        <a href="/">TOP</a> | 
+        <a href="./">Contact</a>
+    </footer>
+    
+</body>
+
+</html>
